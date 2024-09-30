@@ -21,8 +21,7 @@ async def command_start_handler(message: Message) -> None:
 @dp.message()
 async def answer_handler(message: Message) -> None:
     try:
-        req: str = "https://api.freecurrencyapi.com/v1/latest?apikey=" + CURRENCY_TOKEN + "&currencies=RUB"
-        res: str = requests.get(req)
+        res: str = requests.get("https://api.freecurrencyapi.com/v1/latest?apikey=" + CURRENCY_TOKEN + "&currencies=RUB")
         await message.answer(f'Рад знакомству, {message.text}! Курс доллара сегодня {res.json()["data"]["RUB"]:0.2f}р')
     except TypeError:
         await message.answer("Nice try!")
